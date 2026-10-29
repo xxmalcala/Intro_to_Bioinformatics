@@ -2647,7 +2647,7 @@ font-family: inherit;
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sns.barplot</span><span class="er">(</span><span class="ex">data</span> = candy_df,</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">y</span> = <span class="st">&#39;competitorname&#39;</span>,</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="ex">x</span> = <span class="st">&#39;winpercent&#39;</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">widt</span> = 0.8,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">width</span> = 0.8,</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">color</span> = <span class="st">&#39;#DF5B05&#39;</span><span class="kw">)</span></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="ex">plt.xlabel</span><span class="er">(</span><span class="st">&#39;Candy Win Percent&#39;</span><span class="kw">)</span></span>
@@ -2915,10 +2915,8 @@ font-family: inherit;
 <p>Since we are trying to assess <code>continuous</code> variables, we cannot truly rely on a confusion matrix. Rather, we can use the classic <code>R^2^</code> metric to assess how much of the variance is explained by our models.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">def</span> assess_regressors<span class="er">(</span><span class="ex">known_values,</span> predicted_values<span class="kw">)</span><span class="bu">:</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">r2_val</span> = r2_score<span class="er">(</span><span class="ex">known_values,</span> predicted_values<span class="kw">)</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">mae</span> = mean_absolute_error<span class="er">(</span><span class="ex">known_values,</span> predicted_values<span class="kw">)</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">rmse</span> = np.sqrt<span class="er">(</span><span class="ex">mean_squared_error</span><span class="er">(</span><span class="ex">known_values,</span> predicted_values<span class="kw">))</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="ex">r2_val,</span> mae, rmse</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="ex">r2_val</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 <section id="preparing-for-linearregression" class="level2">
@@ -2960,7 +2958,7 @@ font-family: inherit;
 <span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  <span class="ex">grid_search</span> = GridSearchCV<span class="er">(</span></span>
 <span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>                  <span class="ex">estimator</span> = rf_mdl, <span class="co"># train our model</span></span>
 <span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>                  <span class="ex">param_grid</span> = param_grid, <span class="co"># species the parameter combinations</span></span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>                  <span class="ex">cv</span> = 10, <span class="co"># cross-validation (should improve signal and reduce the noise)</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>                  <span class="ex">cv</span> = 3, <span class="co"># cross-validation (should improve signal and reduce the noise)</span></span>
 <span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>                  <span class="ex">scoring</span> = scoring_metric, <span class="co"># use our scoring metric</span></span>
 <span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>                  <span class="ex">n_jobs</span> = <span class="at">-1</span><span class="kw">)</span></span>
 <span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -3010,7 +3008,7 @@ font-family: inherit;
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ex">print</span><span class="er">(</span><span class="ex">f</span><span class="st">&#39;LinearRegression R2: {lr_r2}&#39;</span><span class="kw">)</span></span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ex">print</span><span class="er">(</span><span class="ex">f</span><span class="st">&#39;RandomForestRegressor R2: {rf_r2}&#39;</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>So now there are trained models for <code>winpercent</code> (they end in <code>_wp</code>), which is exciting. However, that only addresses <em>one</em> of the continuous metrics we want to predict. Go ahead and <strong>train a separate set</strong> of models for <code>pricepercent</code>. I recommend that you save the models so they end with <code>_pp</code> to make sure they are separate.</p>
+<p>So now there are trained models for <code>winpercent</code> (they end in <code>_wp</code>), which is exciting. However, that only addresses <em>one</em> of the continuous metrics we want to predict. Go ahead and <strong>train a separate set</strong> of models for <code>pricepercent</code>. I recommend that you save the models as <code>lr_mdl_pp</code> and <code>rf_mdl_pp</code> to make sure they are separate.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Exploring the Data!">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
